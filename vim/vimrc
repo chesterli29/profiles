@@ -77,7 +77,6 @@ if has('gui_running')
     endif
 else
     set background=dark
-    set t_ti= t_te=                     " Prevent clear screen after exit
 endif
 
 " Basic settings
