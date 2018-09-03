@@ -6,7 +6,7 @@ CAPABILITY            38;5;136
 CHR                   38;5;136
 DIR                   38;5;33
 DOOR                  38;5;136
-EXEC                  38;5;40
+EXEC                  38;5;196
 FIFO                  38;5;126
 FILE                  38;1;254
 LINK                  target
