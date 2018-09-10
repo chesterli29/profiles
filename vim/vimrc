@@ -61,7 +61,9 @@ else
 endif
 
 " Remember to change terminal type to xterm-256color!
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized' "
+" when using colorscheme is dracula "
+highlight! Cursorline cterm=None ctermbg=black  guibg=black
 
 call plug#end()
 
