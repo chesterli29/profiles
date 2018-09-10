@@ -98,7 +98,7 @@ set wildmode=list:full                  " Misc: complete and list matched files
 set isfname-==                          " Misc: '=' is not part of filename
 set matchpairs+=<:>                     " Misc: '%' can match <> pair in html
 set smarttab shiftround shiftwidth=4    " Tab: default behaviour
-set expandtab softtabstop=4 tabstop=8   " Tab: default to 4-space soft tab
+set expandtab softtabstop=4 tabstop=4   " Tab: default to 4-space soft tab
 set smartindent autoindent copyindent   " Indenting
 set spelllang=en_us complete+=kspell    " Spell completion, see imap <C-K>
 set completeopt=menuone                 " Auto completion menu
