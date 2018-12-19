@@ -77,7 +77,7 @@ if has('gui_running')
     endif
 else
     set background=dark
-    set t_ti= t_te=                     " Prevent clear screen after exit
+    " set t_ti= t_te=                     " Prevent clear screen after exit
 endif
 
 " Override solarized setting to work with tmux config 'window-style'
