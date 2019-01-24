@@ -62,8 +62,8 @@ endif
 
 " Remember to change terminal type to xterm-256color!
 Plug 'altercation/vim-colors-solarized'
-" when using colorscheme is dracula "
-highlight! Cursorline cterm=None ctermbg=black  guibg=black
+" todo change this to my own repo
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -79,7 +79,11 @@ if has('gui_running')
     endif
 else
     set background=dark
+    " set t_ti= t_te=                     " Prevent clear screen after exit
 endif
+
+" Override solarized setting to work with tmux config 'window-style'
+highlight! Normal ctermbg=none
 
 " Basic settings
 "
@@ -94,6 +98,7 @@ set incsearch smartcase ignorecase hls  " Searching
 set showmatch matchtime=2 scrolloff=4   " Interface
 set encoding=utf-8 textwidth=79         " Editing
 set backspace=indent,eol,start          " Editing
+set comments-=:%                        " Do not let '%' lead a comment line
 set formatoptions=tcqron1MB             " Formatting, MB for multi-byte chars
 silent! set formatoptions+=j            " Vim >= 7.3.541 only
 set wildmode=list:full                  " Misc: complete and list matched files
