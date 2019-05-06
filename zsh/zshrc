@@ -181,8 +181,8 @@ function __setup_aliases
             ;;
         Darwin)
             type gls >& /dev/null && lsprog="gls --color=auto"
-            alias ls="$lsprog -F"
-            alias l="$lsprog -lF"
+            alias ls="$lsprog -FG"
+            alias l="$lsprog -lFG"
             alias lsps='ps -ax -o user,pid,ppid,stime,tty,time,command | grep -vw grep | grep -i'
             ;;
         *)
