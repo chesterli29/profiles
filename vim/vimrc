@@ -98,12 +98,15 @@ set wildignore+=*.jpg,*.png,*.gif,*.pdf,*.doc
 set wildignore+=*.tar,*.gz,*.tgz,*.bz2,*.zip
 set incsearch smartcase ignorecase hls  " Searching
 set showmatch matchtime=2 scrolloff=4   " Interface
-set encoding=utf-8 textwidth=79         " Editing
+set encoding=utf-8 textwidth=80         " Editing
 set backspace=indent,eol,start          " Editing
+set timeoutlen=2000 ttimeoutlen=100     " Waiting time for mappings and key code
 set comments-=:%                        " Do not let '%' lead a comment line
 set formatoptions=tcqron1MB             " Formatting, MB for multi-byte chars
 silent! set formatoptions+=j            " Vim >= 7.3.541 only
-set wildmode=list:full                  " Misc: complete and list matched files
+set wildmenu                            " Enhanced command-line completion
+set wildmode=longest:full,full          " Misc: complete and list matched files
+set wildcharm=<Tab>                     " So that to use <Tab> in nmap
 set isfname-==                          " Misc: '=' is not part of filename
 set matchpairs+=<:>                     " Misc: '%' can match <> pair in html
 set smarttab shiftround shiftwidth=4    " Tab: default behaviour
@@ -154,9 +157,9 @@ highlight! DiffText cterm=underline ctermfg=142 ctermbg=0
 " More colors suitable for Solarized dark background
 "
 highlight! link ColorColumn Search
-highlight! link CharAtCol80 WarningMsg
+highlight! link CharAtCol81 WarningMsg
 highlight! link SpecialChars ErrorMsg
-match CharAtCol80 /\%80v/                       " Mark char at column 80 in red
+match CharAtCol81 /\%81v/                       " Mark char at column 81 in red
 2match SpecialChars /\%xa0\|[“”‘’—]/            " nbsp & smartly replaced chars
 
 " Powerful statusline, underlined status line looks better with cursor line
@@ -212,15 +215,19 @@ nnoremap !!         :q!<CR>|                " Quit without saving
 nnoremap Q          gqip|                   " Format current paragraph
 nnoremap qq         :q<CR>|                 " Quickly close current window
 nnoremap qa         :qa<CR>|                " Quickly close all windows
+nnoremap [          :tabprevious<CR>|       " Previous tab
+nnoremap ]          :tabnext<CR>|           " Next tab
+
 nnoremap <leader>\| :call ToggleColorColumn()<CR>
 nnoremap <leader>2  :set et sts=2 sw=2<CR>| " Use 2-space indent
 nnoremap <leader>4  :set et sts=4 sw=4<CR>| " Use 4-space indent
 nnoremap <Leader>d  :cd %:h<CR>:pwd<CR>|    " Switch to dir of current file
 nnoremap <Leader>-  :cd -<CR>:pwd<CR>|      " Switch back to previous dir
 nnoremap <Leader>e  :tabedit |              " Quick tabedit new file
+nnoremap <Leader>E  :tabedit %:h/<Tab>|     " Quick tabedit file from same dir
 nnoremap <Leader>f  <C-w>gf|                " Open file under cursor in new tab
-nnoremap <Leader>h  :tabprevious<CR>|       " Preserved for tabs
-nnoremap <Leader>l  :tabnext<CR>|           " Use <C-J> to cycle in vsplits
+nnoremap <Leader>h  :tabprevious<CR>|       " Previous tab
+nnoremap <Leader>l  :tabnext<CR>|           " Next tab
 nnoremap <Leader>p  "+p|                    " Paste below from system clipboard
 nnoremap <Leader>P  "+P|                    " Paste above from system clipboard
 nnoremap <leader>q  :qall<CR>|              " Quickly quit vim
@@ -238,6 +245,7 @@ inoremap <C-A>      <C-O>I|                 " Emacs style Home
 inoremap <C-E>      <C-O>A|                 " Emacs style End
 inoremap <C-F>      <C-X><C-F>|             " Complete filename
 inoremap <C-K>      <C-X><C-K>|             " Complete spell from words
+inoremap jj         <ESC>|                  " Work around fucking Mac touch bar
 
 " Maps for visual mode
 vnoremap <Leader>y  "+y|                    " Yank (copy) to system clipboard
