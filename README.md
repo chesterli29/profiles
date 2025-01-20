@@ -3,7 +3,7 @@ My dot files
 
 Run `./install.sh [component]` to install them to `$HOME` directory.
 
-- `bash`: bashrc for general Linux host with nice shortcuts (f, vif, etc.)
+- `alacritty`: config files for [alacritty](https://github.com/alacritty/alacritty)
 - `bin`: useful small scripts to be put into ~/bin
 - `ctags`: config file for ctags
 - `dircolors`: ls color scheme be placed as ~/.dircolors

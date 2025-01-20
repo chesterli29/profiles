@@ -5,5 +5,5 @@ set -o nounset
 
 readonly SELF_DIR=$(cd $(dirname $0) && pwd)
 
-$SELF_DIR/gitconfig.sh
-cp $SELF_DIR/git-ids ~/.git-ids
+mkdir -p ~/.config/nvim
+rsync -a --exclude install.sh $SELF_DIR/ ~/.config/nvim/

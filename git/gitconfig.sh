@@ -1,10 +1,18 @@
 #!/bin/bash
 
+if type nvim >& /dev/null; then
+    difftool="nvim -d"
+    editor="nvim"
+else
+    difftool="vimdiff"
+    editor="vim"
+fi
+
 git config --global alias.st status
 git config --global alias.ci commit
 git config --global alias.info "remote -v show -n"
 git config --global alias.vi \
-    "difftool -y -x 'vimdiff -M \"+wincmd l\" \"+set modifiable write\"'"
+    "difftool -y -x '$difftool -M \"+wincmd l\" \"+set modifiable write\"'"
 git config --global alias.mt "mergetool -y --tool vi"
 git config --global alias.br "branch --sort=-committerdate"
 git config --global alias.co checkout
@@ -19,13 +27,13 @@ git config --global alias.ff "merge --ff-only"
 git config --global alias.noff "merge --no-ff"
 git config --global alias.tr "branch --set-upstream-to"
 
-# Use https://github.com/ymattw/cdiff
-git config --global alias.d '!cdiff -sw0'
+# Use https://github.com/ymattw/ydiff
+git config --global alias.d '!ydiff -sw0'
 
 git config --global alias.rb \
         '!fn() { git stash && git rebase "$@" && git stash pop; }; fn'
 
-git config --global core.editor vim
+git config --global core.editor $editor
 git config --global color.ui true
 git config --global log.abbrevcommit true
 git config --global log.decorate short
@@ -42,9 +50,9 @@ git config --global diff.noprefix true
 # quote in shell)
 #
 git config --global mergetool.vi.cmd \
-    'vimdiff -M "$LOCAL" "$BASE" "$REMOTE" '\''+botright diffsplit '\''"$MERGED" "+set modifiable write"'
+    "$difftool"' -M "$LOCAL" "$BASE" "$REMOTE" '\''+botright diffsplit '\''"$MERGED" "+set modifiable write"'
 
-git config --global push.default simple
+git config --global push.default current
 
 # Leave user.name as per repo setting
 # Leave user.email as per repo setting
