@@ -34,8 +34,8 @@ defaults write com.apple.TextEdit RichText -int 0
 
 # Dock preferences
 #
-defaults write com.apple.dock autohide-delay -float 0
-defaults write com.apple.dock autohide-time-modifier -float 0 && killall Dock
+# defaults write com.apple.dock autohide-delay -float 0
+# defaults write com.apple.dock autohide-time-modifier -float 0 && killall Dock
 
 # Misc preferences
 #
