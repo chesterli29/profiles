@@ -220,7 +220,7 @@ function __setup_ssh_agent
 {
     # Skip setting up ssh agent for "Work" profile. Expects user to use
     # different iTerm profiles "Work" and "Personal".
-    [[ -n $ITERM_PROFILE ]] && [[ ${(U)ITERM_PROFILE} != "WORK" ]] || return 0
+    [[ -n $ITERM_PROFILE ]] || [[ ${(U)ITERM_PROFILE} != "WORK" ]] || return 0
 
     # Assume personal environment from here.
     alias ssh='/usr/bin/ssh'
