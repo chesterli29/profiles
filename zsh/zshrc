@@ -141,7 +141,6 @@ function __setup_shell_options
     bindkey -e                          # Reclaim C-a, C-e, C-r, M-., etc.
     ! test -t 0 || stty stop undef      # Make 'C-s' to do fwd-i-search
     bindkey "^U" backward-kill-line     # Keep the same behavior as in bash
-    echo -ne '\e[2 q'                   # Set cursor to block
 }
 
 function __setup_environments
@@ -291,7 +290,8 @@ function __setup_prompt
 
 # Start hightlight when ready to read a new line of input
 function __zle_line_init {
-  echo -ne '\e[1m'
+  # echo -ne '\e[1m' disable bold
+  echo -ne '\e[2 q'                   # Set cursor to block
 }
 
 # Reset color when finished reading a new line of input

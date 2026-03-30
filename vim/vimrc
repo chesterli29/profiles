@@ -95,7 +95,7 @@ else
 endif
 
 " Default color and font tunings, needs to be after plug#end()
-silent! colorscheme solarized
+" silent! colorscheme solarized
 
 " Override solarized setting to work with tmux config 'window-style'
 highlight! Normal ctermbg=none
