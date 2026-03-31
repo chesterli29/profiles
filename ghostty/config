@@ -11,13 +11,14 @@ cursor-opacity = 0.8
 mouse-hide-while-typing = true
 copy-on-select = clipboard
 
-theme = Atom One Dark
+#theme = Atom One Dark
+theme = Oceanic Next
 
 # background
-background-opacity = 0.85
-background-blur-radius = 30
-macos-titlebar-style = transparent
-window-padding-x = 10
-window-padding-y = 8
-window-save-state = always
-window-theme = auto
+#background-opacity = 0.85
+#background-blur-radius = 30
+#macos-titlebar-style = transparent
+#window-padding-x = 10
+#window-padding-y = 8
+#window-save-state = always
+#window-theme = auto

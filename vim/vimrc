@@ -68,7 +68,7 @@ else
 endif
 
 " Remember to change terminal type to xterm-256color!
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 " todo change this to my own repo
 " Plug 'joshdick/onedark.vim'
 Plug 'chaoleili/onedark.vim'
