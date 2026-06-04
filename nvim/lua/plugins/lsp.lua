@@ -20,19 +20,24 @@ return {
     },
     {
       "[d",
-      "<cmd>lua if vim.diagnostic.jump then vim.diagnostic.jump()(-1) else vim.diagnostic.goto_prev() end<cr>",
+      "<cmd>lua if vim.diagnostic.jump then vim.diagnostic.jump({ count = -1 }) else vim.diagnostic.goto_prev() end<cr>",
       desc = "Goto previous diagnostic",
     },
     {
       "]d",
-      "<cmd>lua if vim.diagnostic.jump then vim.diagnostic.jump()(1) else vim.diagnostic.goto_next() end<cr>",
+      "<cmd>lua if vim.diagnostic.jump then vim.diagnostic.jump({ count = 1 }) else vim.diagnostic.goto_prev() end<cr>",
       desc = "Goto next diagnostic",
     },
   },
   config = function()
     require("mason").setup()
     require("mason-lspconfig").setup({
-      ensure_installed = { "pylsp", "lua_ls" },
+      ensure_installed = {
+        "gopls",
+        "lua_ls",
+        "pylsp",
+        "rust_analyzer",
+      },
     })
 
     local lspconfig = require("lspconfig")
@@ -47,6 +52,19 @@ return {
     end
 
     -- Configure LSP servers
+    lspconfig.gopls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+    })
+
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
@@ -62,6 +80,31 @@ return {
     lspconfig.pylsp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
+    })
+
+    lspconfig.rust_analyzer.setup({
+      capabilities = capabilities,
+      settings = {
+        ["rust-analyzer"] = {
+          diagnostics = {
+            enable = true,
+          },
+          cargo = {
+            allFeatures = true,
+          },
+          procMacro = {
+            enable = true,
+          },
+        },
+      },
+    })
+
+    lspconfig.ts_ls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      -- sudo npm i -g typescript typescript-language-server
+      filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+      cmd = { "typescript-language-server", "--stdio" },
     })
   end,
 }

@@ -7,7 +7,7 @@ return {
   opts = {},
   config = function(_, opts)
     vim.opt.termguicolors = true
-    vim.opt.background = "dark"
+    vim.opt.background = vim.g.neovide and "light" or "dark"
     require("solarized").setup(opts)
     vim.cmd.colorscheme("solarized")
 
@@ -18,20 +18,20 @@ return {
 
     -- Syntax groups
     hl(0, "Constant", { fg = c.cyan })
-    hl(0, "Function", { link = "Normal" })
-    hl(0, "Identifier", { link = "Normal" })
+    hl(0, "Function", { fg = c.base0 })
+    hl(0, "Identifier", { fg = c.base0 })
     hl(0, "Keyword", { fg = c.green })
     hl(0, "Parameter", { fg = e.darken(c.blue, 10) })
-    hl(0, "Property", { link = "Normal" })
+    hl(0, "Property", { fg = c.base0 })
     hl(0, "Special", { fg = c.violet })
-    hl(0, "Type", { link = "Normal" })
+    hl(0, "Type", { fg = c.base0 })
 
     hl(0, "@lsp.mod.defaultLibrary", { fg = e.darken(c.green, 10) })
     hl(0, "@lsp.typemod.function.defaultLibrary", { fg = e.darken(c.green, 20) })
     hl(0, "@lsp.typemod.method.declaration", { fg = c.blue })
-    hl(0, "@lsp.typemod.parameter", { link = "Normal" })
+    hl(0, "@lsp.typemod.parameter", { fg = c.base0, italic = true })
     hl(0, "@lsp.type.parameter", { link = "@lsp.typemod.parameter" })
-    hl(0, "@lsp.type.interface", { link = "Normal" })
+    hl(0, "@lsp.type.interface", { fg = c.base0 })
     hl(0, "@lsp.type.type", { link = "Keyword" })
 
     -- Diff mode
@@ -56,8 +56,15 @@ return {
     hl(0, "IllegalChar", { link = "ErrorMsg" })
 
     -- RRethy/vim-illuminate
-    hl(0, "IlluminatedWordText", { fg = c.base1 })
-    hl(0, "IlluminatedWordRead", { fg = c.base1 })
-    hl(0, "IlluminatedWordWrite", { fg = c.base1 })
+    hl(0, "IlluminatedWordText", { bg = e.lighten(c.base03, 20), bold = true })
+    hl(0, "IlluminatedWordRead", { bg = e.lighten(c.base03, 20), bold = true })
+    hl(0, "IlluminatedWordWrite", { bg = e.lighten(c.base03, 20), bold = true })
+
+    if vim.g.neovide then
+      hl(0, "Pmenu", { bg = c.base1, fg = c.base02 })
+      hl(0, "IlluminatedWordText", { fg = c.base03, bold = true })
+      hl(0, "IlluminatedWordRead", { fg = c.base03, bold = true })
+      hl(0, "IlluminatedWordWrite", { fg = c.base03, bold = true })
+    end
   end,
 }

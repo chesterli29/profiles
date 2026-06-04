@@ -41,6 +41,13 @@ defaults write com.apple.TextEdit RichText -int 0
 #
 # Make key repeat work in browser
 defaults write -g ApplePressAndHoldEnabled -bool false
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Disable the chime when your laptop is plugged in with command
 defaults write com.apple.PowerChime ChimeOnAllHardware -bool false && killall PowerChime
+
+# Disable Font Smoothing (https://www.fontsmoothingadjuster.com)
+# This is the reason why font is thicker in terminals!
+defaults -currentHost write -g AppleFontSmoothing -int 0

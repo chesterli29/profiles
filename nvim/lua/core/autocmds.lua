@@ -53,6 +53,22 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "startinsert",
 })
 
+-- Turn off hlsearch when entering a terminal buffer
+vim.api.nvim_create_autocmd("TermEnter", {
+  pattern = "*",
+  callback = function()
+    vim.opt.hlsearch = false
+  end,
+})
+
+-- Restore hlsearch to on when leaving a terminal buffer
+vim.api.nvim_create_autocmd("TermLeave", {
+  pattern = "*",
+  callback = function()
+    vim.opt.hlsearch = true
+  end,
+})
+
 -- Remap '!' to run command in terminal
 vim.keymap.set("c", "!", function()
   if vim.fn.getcmdpos() == 1 then
@@ -116,6 +132,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 8
     vim.opt_local.list = false
     vim.opt_local.textwidth = 0
+    -- Reset these to make gq able to format comments
+    vim.opt_local.formatexpr = nil
+    vim.opt_local.formatprg = nil
+    vim.opt_local.formatoptions = "tcqron1MBj"
     -- Trigger OptionSet event manually
     vim.api.nvim_exec_autocmds("OptionSet", { pattern = "textwidth" })
 
@@ -131,9 +151,17 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit", "markdown" },
+  pattern = { "gitcommit", "hgcommit", "markdown" },
   callback = function()
     vim.opt_local.spell = true
+  end,
+})
+
+-- Show diagnostics automatically on hover
+vim.opt.updatetime = 1000 -- When cursor is idle for 1 second
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false })
   end,
 })
 
